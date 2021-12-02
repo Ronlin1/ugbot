@@ -2,19 +2,26 @@ from tweepy import Stream
 import logging
 import time
 import tweepy
-import os
-from dotenv import load_dotenv
+# import os
+# from dotenv import load_dotenv
 
 # load our .env file to make use of the environment variables
-load_dotenv()
+# load_dotenv()
 
 # import and assign our environment variables
-API_KEY = os.getenv('twitter_api_key')
-API_SECRET = os.getenv('twitter_api_secret')
-ACCESS_TOKEN = os.getenv('twitter_access_token')
-TOKEN_SECRET = os.getenv('twitter_access_token_secret')
+# API_KEY = os.getenv('twitter_api_key')
+# API_SECRET = os.getenv('twitter_api_secret')
+# ACCESS_TOKEN = os.getenv('twitter_access_token')
+# TOKEN_SECRET = os.getenv('twitter_access_token_secret')
+
+API_KEY="EbHASCqNoSizCkelk617JfPfC"
+API_SECRET="biSZHHkn7cEuSJpy7nYwnKVpA41CnZZnXgejdHFQbiSX1janap"
+ACCESS_TOKEN="1460471236929196032-r1XJsBFvN4iKcSZRo5qEAqsEQS7EZ7"
+TOKEN_SECRET="omi9vxUu6BobsxMVVIrsm761hvxTNTvS88xxeaM36fwVw"
+
 
 # print(API_SECRET, API_KEY, ACCESS_TOKEN, TOKEN_SECRET)
+
 
 # instantiate oauth handler and set access token
 twitter_oauth = tweepy.OAuthHandler(API_KEY, API_SECRET)
@@ -60,11 +67,11 @@ class FavRetweetListener(Stream):
     def on_status(self, tweet):
         logger.info(f"Processing tweet id {tweet.id}")
         # print("Yay", tweet)
-        file = "log.txt"
+        # file = "log.txt"
 
-        with open(file, "a+", encoding='utf-8') as f:
-            if tweet.id not in f:
-                f.write(str(f"{tweet.id}\n"))
+        # with open(file, "a+", encoding='utf-8') as f:
+        #     if tweet.id not in f:
+        #         f.write(str(f"{tweet.id}\n"))
 
         if self.contains_hate_words(tweet.text) or self.is_reply(tweet):
             return
